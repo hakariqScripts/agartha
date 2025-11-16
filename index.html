@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Open Graph Metadata -->
+  <meta property="og:title" content="Entrance to agartha" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://i.imgur.com/9EHIiMV.png" />
+  <meta property="og:description" content="Join the agarthian community!" />
+  <meta name="keywords" content="agartha, filip" />
+  <meta name="description" content="Join the agarthian community!" />
+  <meta name="theme-color" content="#85deff" />
+
+  <title>Entrance to Agartha</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      flex-direction: column;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    #bgVideo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      /* removed darkening */
+    }
+
+    #gifContainer {
+      position: absolute;
+      display: none;
+      width: 200px;
+      height: 200px;
+    }
+
+    #gifContainer img {
+      width: 100%;
+      height: 100%;
+    }
+
+    #joinBtn {
+      font-size: 3rem;
+      padding: 20px 40px;
+      cursor: pointer;
+      background: #85deff;
+      border: none;
+      border-radius: 20px;
+      color: black;
+      font-weight: bold;
+      transition: transform 0.2s;
+    }
+
+    #joinBtn:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <video id="bgVideo" src="https://raw.githubusercontent.com/hakariqScripts/agharta/refs/heads/main/Agartha%20edit.mp4" autoplay loop muted playsinline></video>
+
+  <div id="entryScreen">
+    <h1 style="font-size: 4rem;">Do you want to join agartha?</h1>
+    <button id="joinBtn">YES!</button>
+  </div>
+
+  <div id="gifContainer" style="position:absolute; display:none; width:200px; height:200px;">
+    <img src="https://i.imgur.com/z78h8re.gif" />
+  </div>
+
+  <div id="gifContainer2" style="position:absolute; display:none; width:200px; height:200px;">
+    <img src="https://i.imgur.com/z78h8re.gif" />
+  </div>
+
+  <div id="gifContainer3" style="position:absolute; display:none; width:200px; height:200px;">
+    <img src="https://i.imgur.com/z78h8re.gif" />
+  </div>
+
+  <audio id="song" src="https://raw.githubusercontent.com/hakariqScripts/agharta/refs/heads/main/Down%20Under%20-%20Agartha%20Remix%20-%20YourLocalSchizo.mp3"></audio>
+
+  <script>
+    const btn = document.getElementById('joinBtn');
+    const song = document.getElementById('song');
+    const entryScreen = document.getElementById('entryScreen');
+    const gif = document.getElementById('gifContainer');
+    const gif2 = document.getElementById('gifContainer2');
+    const gif3 = document.getElementById('gifContainer3');
+    const vid = document.getElementById('bgVideo');
+
+    let x = 200, y = 200, vx = 14, vy = 14;
+    let x2 = 400, y2 = 400, vx2 = 11, vy2 = 11;
+    let x3 = 600, y3 = 100, vx3 = 9, vy3 = 9;
+
+    function bounce() {
+      const w = window.innerWidth - gif.clientWidth;
+      const h = window.innerHeight - gif.clientHeight;
+
+      x += vx; y += vy;
+      if (x <= 0 || x >= w) vx = -vx;
+      if (y <= 0 || y >= h) vy = -vy;
+      gif.style.left = x + 'px';
+      gif.style.top = y + 'px';
+
+      const w2 = window.innerWidth - gif2.clientWidth;
+      const h2 = window.innerHeight - gif2.clientHeight;
+      x2 += vx2; y2 += vy2;
+      if (x2 <= 0 || x2 >= w2) vx2 = -vx2;
+      if (y2 <= 0 || y2 >= h2) vy2 = -vy2;
+      gif2.style.left = x2 + 'px';
+      gif2.style.top = y2 + 'px';
+
+      const w3 = window.innerWidth - gif3.clientWidth;
+      const h3 = window.innerHeight - gif3.clientHeight;
+      x3 += vx3; y3 += vy3;
+      if (x3 <= 0 || x3 >= w3) vx3 = -vx3;
+      if (y3 <= 0 || y3 >= h3) vy3 = -vy3;
+      gif3.style.left = x3 + 'px';
+      gif3.style.top = y3 + 'px';
+
+      requestAnimationFrame(bounce);
+    }
+
+    btn.addEventListener('click', () => {
+      entryScreen.style.display = 'none';
+      gif.style.display = 'block';
+      gif2.style.display = 'block';
+      gif3.style.display = 'block';
+      song.play().catch(() => console.log('Audio play failed'));
+      vid.playbackRate = 2;
+      bounce();
+    });
+  </script>
+</body>
+</html>
